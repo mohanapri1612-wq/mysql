@@ -1,0 +1,40 @@
+CREATE DATABASE CustomerDB;
+USE CustomerDB;
+
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    city VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    order_name VARCHAR(50),
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+
+INSERT INTO Customers VALUES
+(1, 'Arun', 'Chennai'),
+(2, 'Priya', 'Madurai'),
+(3, 'Kavin', 'Salem'),
+(4, 'Divya', 'Coimbatore'),
+(5, 'Rahul', 'Trichy');
+
+INSERT INTO Orders VALUES
+(101, 'Laptop', 1),
+(102, 'Mobile', 2),
+(103, 'Keyboard', 1),
+(104, 'Mouse', 3),
+(105, 'Printer', 4);
+
+SELECT Customers.customer_name, Orders.order_name
+FROM Customers
+INNER JOIN Orders
+ON Customers.customer_id = Orders.customer_id
+
+SELECT Customers.customer_name, Orders.order_name
+FROM Customers
+LEFT JOIN Orders
+ON Customers.customer_id = Orders.customer_id;
