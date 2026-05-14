@@ -1,0 +1,35 @@
+CREATE DATABASE EventDB;
+USE EventDB;
+CREATE TABLE events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    event_name VARCHAR(100),
+    event_date DATETIME
+)
+INSERT INTO events (event_name, event_date)
+VALUES
+('Conference', '2026-05-20 10:30:00'),
+('Workshop', '2026-06-15 14:00:00'),
+('Seminar', '2026-07-10 09:15:00'),
+('Hackathon', '2026-08-05 11:45:00');
+
+
+SELECT NOW() AS Current_Date_Time;
+
+
+SELECT 
+    id,
+    event_name,
+    DATE_FORMAT(event_date, '%d-%m-%Y %h:%i:%s %p') AS Formatted_Date
+FROM events;
+
+
+SELECT
+    event_name,
+    YEAR(event_date) AS Event_Year,
+    MONTH(event_date) AS Event_Month
+FROM events;
+
+
+SELECT
+    CONCAT(event_name, ' - ', event_date) AS Event_Details
+FROM events;
